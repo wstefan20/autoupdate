@@ -4,7 +4,7 @@
     <main>
       <div class="left-side">
         <span class="title">
-          This is a Test!
+          This is another test!
         </span>
         <system-information></system-information>
       </div>
