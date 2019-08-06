@@ -1,8 +1,8 @@
 {
   "name": "autoupdate",
   "version": "0.0.1",
-  "author": "",
-  "description": "An electron-vue project",
+  "author": "Stefan Wagner",
+  "description": "Simulatedgreg auto update test",
   "license": null,
   "main": "./dist/electron/main.js",
   "scripts": {
@@ -14,11 +14,14 @@
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-    "postinstall": ""
+    "postinstall": "",
+    "scripts": {
+      "publish": "build -p always"
+    }
   },
   "build": {
     "productName": "autoupdate",
-    "appId": "com.example.yourapp",
+    "appId": "com.autoupdate.app",
     "directories": {
       "output": "build"
     },
