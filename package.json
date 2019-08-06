@@ -15,9 +15,7 @@
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
     "postinstall": "",
-    "scripts": {
-      "publish": "build -p always"
-    }
+    "publish": "build -p always"
   },
   "build": {
     "productName": "autoupdate",
