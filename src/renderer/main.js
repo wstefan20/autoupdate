@@ -18,29 +18,23 @@ new Vue({
   template: '<App/>'
 }).$mount('#app')
 
-if (process.env.NODE_ENV === 'production'){
-    const log = require('electron-log');
-    const {autoUpdater} = require("electron-updater");
-    //autoUpdater.logger = log;
-    //autoUpdater.logger.transports.file.level = 'info';
-    //log.info('App starting...');
-    alert('App starting...')
 
-    autoUpdater.checkForUpdates();
-    autoUpdater.on('checking-for-update', () => {
-      alert('Checking for update')
-    })
-    autoUpdater.on('update-available', (info) => {
-      alert('Update available')
-    })
-    autoUpdater.on('update-not-available', (info) => {
-      alert('Update not available')
-    })
-    autoUpdater.on('error', (err) => {
-      alert('Error: ' + err)
-    })
-    autoUpdater.on('update-downloaded', (info) => {
-      alert('Update downloaded')
-      autoUpdater.quitAndInstall();
-    })
-}
+    // const {autoUpdater} = require("electron-updater");
+    // alert('App starting...')
+    // autoUpdater.checkForUpdates();
+    // autoUpdater.on('checking-for-update', () => {
+    //   alert('Checking for update')
+    // })
+    // autoUpdater.on('update-available', (info) => {
+    //   alert('Update available')
+    // })
+    // autoUpdater.on('update-not-available', (info) => {
+    //   alert('Update not available')
+    // })
+    // autoUpdater.on('error', (err) => {
+    //   alert('Error: ' + err)
+    // })
+    // autoUpdater.on('update-downloaded', (info) => {
+    //   alert('Update downloaded')
+    //   autoUpdater.quitAndInstall();
+    // })
