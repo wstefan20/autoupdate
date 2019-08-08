@@ -4,7 +4,7 @@
     <main>
       <div class="left-side">
         <span class="title">
-          Please work!
+          Please Please work!
         </span>
         <system-information></system-information>
       </div>
