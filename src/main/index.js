@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron'
 const log = require('electron-log');
 const {autoUpdater} = require("electron-updater");
+const { dialog } = require('electron')
 
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'warn';
@@ -63,17 +64,57 @@ app.on('activate', () => {
 
 app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
-})
-autoUpdater.on('checking-for-update', () => {
-})
-autoUpdater.on('update-available', (warn) => {
-})
-autoUpdater.on('update-not-available', (warn) => {
-})
-autoUpdater.on('error', (err) => {
-})
-autoUpdater.on('download-progress', (progressObj) => {
-})
-autoUpdater.on('update-downloaded', (warn) => {
-  autoUpdater.quitAndInstall();
+
+  let updater
+  autoUpdater.autoDownload = false
+
+  autoUpdater.on('update-available', () => {
+    dialog.showMessageBox({
+      type: 'info',
+      title: 'Found Updates',
+      message: 'Found updates, do you want update now?',
+      buttons: ['Sure', 'No']
+    }, (buttonIndex) => {
+      if (buttonIndex === 0) {
+        autoUpdater.downloadUpdate()
+      }
+      else {
+        updater.enabled = true
+        updater = null
+      }
+    })
+  })
+
+  autoUpdater.on('update-not-available', () => {
+    dialog.showMessageBox({
+      title: 'No Updates',
+      message: 'Current version is up-to-date.'
+    })
+    updater.enabled = true
+    updater = null
+  })
+
+  autoUpdater.on('error', (error) => {
+    dialog.showErrorBox('Error: ', error == null ? "unknown" : (error.stack || error).toString())
+  })
+
+  autoUpdater.on('download-progress', (progressObj) => {
+     let log_message = "Download speed: " + progressObj.bytesPerSecond;
+     log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
+     log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
+     dialog.showMessageBox({
+       title: 'Updating Progress',
+       message: 'log_message'
+    })
+  })
+
+  autoUpdater.on('update-downloaded', () => {
+    dialog.showMessageBox({
+      title: 'Install Updates',
+      message: 'Updates downloaded, application will be quit for update...'
+    }, () => {
+      setImmediate(() => autoUpdater.quitAndInstall())
+    })
+  })
+
 })
