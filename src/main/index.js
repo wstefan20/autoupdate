@@ -61,11 +61,19 @@ app.on('activate', () => {
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
  */
 
-
-autoUpdater.on('update-downloaded', () => {
-  autoUpdater.quitAndInstall()
-})
-
 app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
+})
+autoUpdater.on('checking-for-update', () => {
+})
+autoUpdater.on('update-available', (warn) => {
+})
+autoUpdater.on('update-not-available', (warn) => {
+})
+autoUpdater.on('error', (err) => {
+})
+autoUpdater.on('download-progress', (progressObj) => {
+})
+autoUpdater.on('update-downloaded', (warn) => {
+  autoUpdater.quitAndInstall();
 })
