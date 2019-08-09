@@ -78,10 +78,10 @@ app.on('ready', () => {
       if (buttonIndex === 0) {
         autoUpdater.downloadUpdate()
       }
-      else {
-        updater.enabled = true
-        updater = null
-      }
+      // else {
+        //updater.enabled = true
+        //updater = null
+      // }
     })
   })
 
@@ -90,8 +90,8 @@ app.on('ready', () => {
       title: 'No Updates',
       message: 'Current version is up-to-date.'
     })
-    updater.enabled = true
-    updater = null
+    //updater.enabled = true
+    //updater = null
   })
 
   autoUpdater.on('error', (error) => {
