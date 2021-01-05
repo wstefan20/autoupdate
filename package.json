@@ -52,7 +52,7 @@
     }
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "electron-log": "^3.0.7",
     "electron-updater": "^4.1.2",
     "vue": "^2.5.16",
